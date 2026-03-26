@@ -25,6 +25,7 @@ while ($r = $msg_trend->fetch_assoc()) { $trend_labels[] = $r['d']; $trend_value
 <title>Admin Dashboard</title>
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/admin.css">
+<script src="js/theme.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 </head>
 <body class="admin-body">
@@ -77,6 +78,7 @@ while ($r = $msg_trend->fetch_assoc()) { $trend_labels[] = $r['d']; $trend_value
       <div class="adm-topbar-user">
         <div class="adm-topbar-avatar"><?php echo strtoupper(substr($_SESSION['username'],0,1)); ?></div>
         <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
+        <button class="theme-toggle" onclick="toggleTheme()"></button>
       </div>
     </div>
 

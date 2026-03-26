@@ -300,3 +300,40 @@
 
     .adm-table-wrap { overflow-x: auto; }
 }
+
+/* ── Admin Dark Mode ── */
+[data-theme="dark"] .admin-body { background: #0b141a; }
+[data-theme="dark"] .adm-main { background: #0b141a; }
+[data-theme="dark"] .adm-topbar { background: #1f2c34; border-color: #2a3942; }
+[data-theme="dark"] .adm-page-title { color: #e9edef; }
+[data-theme="dark"] .adm-topbar-user { color: #aebac1; }
+[data-theme="dark"] .adm-card { background: #1f2c34; box-shadow: 0 1px 4px rgba(0,0,0,0.3); }
+[data-theme="dark"] .adm-card-header { border-color: #2a3942; }
+[data-theme="dark"] .adm-card-title { color: #e9edef; }
+[data-theme="dark"] .adm-stat-card { background: #1f2c34; }
+[data-theme="dark"] .adm-stat-num { color: #e9edef; }
+[data-theme="dark"] .adm-table th { background: #182229; color: #aebac1; border-color: #2a3942; }
+[data-theme="dark"] .adm-table td { color: #e9edef; border-color: #2a3942; }
+[data-theme="dark"] .adm-table tr:hover td { background: #182229; }
+[data-theme="dark"] .adm-search { background: #182229; border-color: #2a3942; color: #e9edef; }
+[data-theme="dark"] .adm-btn { background: #2a3942; border-color: #3b4a54; color: #aebac1; }
+[data-theme="dark"] .adm-btn:hover { background: #3b4a54; }
+[data-theme="dark"] .adm-modal { background: #1f2c34; }
+[data-theme="dark"] .adm-modal-header { border-color: #2a3942; }
+[data-theme="dark"] .adm-modal-header h3 { color: #e9edef; }
+[data-theme="dark"] .adm-modal-footer { border-color: #2a3942; }
+[data-theme="dark"] .adm-modal-body p { color: #aebac1; }
+[data-theme="dark"] .adm-form-group label { color: #aebac1; }
+[data-theme="dark"] .adm-form-group input,
+[data-theme="dark"] .adm-form-group select { background: #182229; border-color: #2a3942; color: #e9edef; }
+[data-theme="dark"] .adm-msg-item { background: #182229; }
+[data-theme="dark"] .adm-msg-item-body { color: #e9edef; }
+[data-theme="dark"] .adm-conv-messages-cell { background: #182229 !important; border-color: #2a3942 !important; }
+[data-theme="dark"] .adm-conv-messages-inner { background: #182229; }
+[data-theme="dark"] .adm-conv-row:hover td { background: #182229 !important; }
+[data-theme="dark"] .adm-user-name { color: #e9edef; }
+[data-theme="dark"] .adm-hamburger { color: #aebac1; }
+[data-theme="dark"] .adm-hamburger:hover { background: #2a3942; }
+[data-theme="dark"] .adm-pwd-toggle { background: #182229; color: #aebac1; }
+[data-theme="dark"] .adm-conv-preview { color: #667781; }
+[data-theme="dark"] .adm-loading { color: #667781; }
