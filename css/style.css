@@ -861,16 +861,34 @@ body {
 }
 .settings-save-btn:hover { opacity: 0.9; transform: translateY(-1px); }
 .settings-save-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+/* Mobile menu button — hidden on desktop */
+.mobile-menu-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    color: #54656f;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+.mobile-menu-btn:hover { background: #f0f2f5; }
+
+.sidebar-overlay { display: none; }
+
 @media (max-width: 768px) {
     .sidebar {
-        width: 100%;
-        max-width: 320px;
-        position: absolute;
-        left: -320px;
-        z-index: 100;
-        transition: left 0.3s ease;
+        width: 280px;
+        position: fixed;
+        left: -280px;
+        top: 0;
         height: 100%;
-        box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+        z-index: 200;
+        transition: left 0.28s ease;
+        box-shadow: 4px 0 24px rgba(0,0,0,0.18);
     }
 
     .sidebar.open {
@@ -879,5 +897,25 @@ body {
 
     .main-chat {
         width: 100%;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+    }
+
+    .sidebar-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        z-index: 199;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.28s ease;
+    }
+
+    .sidebar-overlay.visible {
+        opacity: 1;
+        pointer-events: all;
     }
 }

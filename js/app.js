@@ -49,6 +49,24 @@ function setupEventListeners() {
     document.getElementById('settingsModal').addEventListener('click', function(e) {
         if (e.target === this) closeSettings();
     });
+
+    // Mobile sidebar toggle
+    const sidebarToggle = document.getElementById('sidebarToggle');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const sidebar = document.querySelector('.sidebar');
+
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            sidebarOverlay.classList.toggle('visible');
+        });
+    }
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('visible');
+        });
+    }
     
     // Monitor scroll position
     const messageArea = document.getElementById('messageArea');
@@ -143,6 +161,10 @@ function openChat(chatId) {
     fetch(`api/chats.php?action=get&id=${chatId}`)
         .then(res => res.json())
         .then(chat => {
+            // Close sidebar on mobile after selecting a chat
+            document.querySelector('.sidebar').classList.remove('open');
+            const overlay = document.getElementById('sidebarOverlay');
+            if (overlay) overlay.classList.remove('visible');
             let chatName = chat.name;
             if (chat.type === 'private') {
                 const otherUser = chat.participants.find(p => p.id != userId);
@@ -151,6 +173,9 @@ function openChat(chatId) {
             
             document.getElementById('chatHeader').innerHTML = `
                 <div class="chat-header-info">
+                    <button class="mobile-menu-btn" onclick="document.querySelector('.sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('visible')" title="Menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    </button>
                     <div class="chat-header-avatar">${chatName.charAt(0).toUpperCase()}</div>
                     <div>
                         <div class="chat-header-name">${chatName}</div>

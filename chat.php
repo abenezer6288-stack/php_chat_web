@@ -51,6 +51,9 @@ $role = $_SESSION['role'];
         <div class="main-chat">
             <div id="chatHeader" class="chat-header">
                 <div class="chat-header-info">
+                    <button class="mobile-menu-btn" id="sidebarToggle" title="Menu">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    </button>
                     <h3>Select a conversation</h3>
                 </div>
                 <button id="settingsBtn" class="settings-btn" title="Settings">
@@ -144,7 +147,8 @@ $role = $_SESSION['role'];
             </div>
         </div>
     </div>
-    
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
     <script>
         const userId = <?php echo $user_id; ?>;
         const userRole = '<?php echo $role; ?>';
