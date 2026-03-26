@@ -65,10 +65,14 @@ while ($r = $msg_trend->fetch_assoc()) { $trend_labels[] = $r['d']; $trend_value
       </a>
     </div>
   </aside>
+  <div id="admOverlay" class="adm-overlay"></div>
 
   <!-- Main -->
   <main class="adm-main">
     <div class="adm-topbar">
+      <button class="adm-hamburger" id="admHamburger" title="Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
       <div id="adm-page-title" class="adm-page-title">Dashboard</div>
       <div class="adm-topbar-user">
         <div class="adm-topbar-avatar"><?php echo strtoupper(substr($_SESSION['username'],0,1)); ?></div>

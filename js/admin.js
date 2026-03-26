@@ -1,6 +1,17 @@
 // ── Tab navigation ──────────────────────────────────────────
 const PAGE_TITLES = { dashboard:'Dashboard', users:'User Management', chats:'Chat Management', messages:'Message Logs' };
 
+// Mobile sidebar
+const admHamburger = document.getElementById('admHamburger');
+const admNav = document.querySelector('.adm-nav');
+const admOverlay = document.getElementById('admOverlay');
+
+function openAdmNav() { admNav.classList.add('open'); admOverlay.classList.add('visible'); }
+function closeAdmNav() { admNav.classList.remove('open'); admOverlay.classList.remove('visible'); }
+
+if (admHamburger) admHamburger.addEventListener('click', () => admNav.classList.contains('open') ? closeAdmNav() : openAdmNav());
+if (admOverlay)   admOverlay.addEventListener('click', closeAdmNav);
+
 document.querySelectorAll('.adm-nav-item[data-tab]').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
@@ -13,6 +24,7 @@ document.querySelectorAll('.adm-nav-item[data-tab]').forEach(link => {
     if (tab === 'users')    loadUsers();
     if (tab === 'chats')    loadChats();
     if (tab === 'messages') loadMessages();
+    closeAdmNav();
   });
 });
 
