@@ -34,7 +34,7 @@ while ($r = $msg_trend->fetch_assoc()) { $trend_labels[] = $r['d']; $trend_value
   <aside class="adm-nav">
     <div class="adm-nav-logo">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-      <span>Library Admin</span>
+      <span>School Admin</span>
     </div>
     <nav>
       <a href="#" class="adm-nav-item active" data-tab="dashboard">

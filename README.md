@@ -1,4 +1,4 @@
-# Library Chat System
+# School Chat System
 
 A web-based chat system for schools enabling communication between students, teachers, and administrators.
 
@@ -34,7 +34,7 @@ A web-based chat system for schools enabling communication between students, tea
    define('DB_HOST', 'localhost');
    define('DB_USER', 'your_username');
    define('DB_PASS', 'your_password');
-   define('DB_NAME', 'library_chat');
+   define('DB_NAME', 'school_chat');
    ```
 
 4. **Set permissions** for the uploads directory:
@@ -43,11 +43,11 @@ A web-based chat system for schools enabling communication between students, tea
    ```
 
 5. **Access the application**:
-   Open your browser and navigate to: `http://localhost/library-chat/`
+   Open your browser and navigate to: `http://localhost/school-chat/`
 
 ## Default Admin Account
 
-- **Email**: admin@library.com
+- **Email**: admin@school.com
 - **Password**: admin123
 
 **Important**: Change the admin password after first login!
@@ -75,7 +75,7 @@ A web-based chat system for schools enabling communication between students, tea
 ## File Structure
 
 ```
-library-chat/
+school-chat/
 ├── index.php           # Login page
 ├── register.php        # Registration page
 ├── chat.php           # Main chat interface

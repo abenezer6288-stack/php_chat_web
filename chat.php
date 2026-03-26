@@ -15,7 +15,7 @@ $role = $_SESSION['role'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat - Library Chat System</title>
+    <title>Chat - School Chat System</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
