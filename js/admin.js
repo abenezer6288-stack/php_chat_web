@@ -223,7 +223,7 @@ function renderConversations(convs) {
 
     return `
       <tr class="adm-conv-row" data-chat-id="${c.chat_id}" onclick="toggleConversation(${c.chat_id}, this)">
-        <td class="adm-conv-toggle"><span class="adm-chevron">▶</span></td>
+        <td class="adm-conv-toggle"><span class="adm-chevron" id="chevron-${c.chat_id}">▶</span></td>
         <td><div class="adm-conv-label">${label}</div><div class="adm-conv-preview">${preview}</div></td>
         <td>${typeBadge}</td>
         <td>${parts}</td>
@@ -231,7 +231,7 @@ function renderConversations(convs) {
         <td style="white-space:nowrap;color:#8696a0;font-size:13px">${time}</td>
         <td><button class="adm-btn adm-btn-sm adm-btn-danger" onclick="event.stopPropagation();confirmDelete('chat',${c.chat_id},'${esc(c.chat_name)}')">Delete</button></td>
       </tr>
-      <tr class="adm-conv-messages hidden" id="conv-msgs-${c.chat_id}">
+      <tr class="adm-conv-messages" id="conv-msgs-${c.chat_id}" data-open="0" style="display:none" onclick="event.stopPropagation()">
         <td colspan="7" class="adm-conv-messages-cell">
           <div class="adm-conv-messages-inner" id="conv-msgs-inner-${c.chat_id}">
             <div class="adm-loading">Loading messages...</div>
@@ -243,24 +243,29 @@ function renderConversations(convs) {
 
 function toggleConversation(chatId, row) {
   const msgRow = document.getElementById(`conv-msgs-${chatId}`);
-  const chevron = row.querySelector('.adm-chevron');
-  const isOpen = !msgRow.classList.contains('hidden');
+  if (!msgRow) return;
+
+  const chevron = document.getElementById(`chevron-${chatId}`);
+  const isOpen = msgRow.dataset.open === '1';
 
   if (isOpen) {
-    msgRow.classList.add('hidden');
-    chevron.textContent = '▶';
-    chevron.classList.remove('open');
+    msgRow.dataset.open = '0';
+    msgRow.style.display = 'none';
+    if (chevron) { chevron.textContent = '▶'; chevron.classList.remove('open'); }
     return;
   }
 
-  msgRow.classList.remove('hidden');
-  chevron.textContent = '▼';
-  chevron.classList.add('open');
+  msgRow.dataset.open = '1';
+  msgRow.style.display = '';
+  if (chevron) { chevron.textContent = '▼'; chevron.classList.add('open'); }
+
+  const inner = document.getElementById(`conv-msgs-inner-${chatId}`);
+  if (inner.dataset.loaded === '1') return;
 
   fetch(`api/admin.php?action=conversation&chat_id=${chatId}`)
     .then(r => r.json())
     .then(msgs => {
-      const inner = document.getElementById(`conv-msgs-inner-${chatId}`);
+      inner.dataset.loaded = '1';
       if (!msgs.length) { inner.innerHTML = '<div class="adm-loading">No messages.</div>'; return; }
       inner.innerHTML = msgs.map(m => `
         <div class="adm-msg-item">
@@ -271,7 +276,7 @@ function toggleConversation(chatId, row) {
             </div>
             ${m.chat_type === 'private' && m.recipient ? `<span class="adm-msg-arrow">→</span><div class="adm-user-cell"><div class="adm-user-avatar adm-avatar-recipient" style="width:26px;height:26px;font-size:11px">${esc(m.recipient.charAt(0).toUpperCase())}</div><strong>${esc(m.recipient)}</strong></div>` : ''}
             <span class="adm-msg-time">${m.timestamp ? m.timestamp.substring(0,16) : ''}</span>
-            <button class="adm-btn adm-btn-sm adm-btn-danger" style="margin-left:auto" onclick="confirmDelete('message',${m.id},'this message')">Delete</button>
+            <button class="adm-btn adm-btn-sm adm-btn-danger" style="margin-left:auto" onclick="event.stopPropagation();confirmDelete('message',${m.id},'this message')">Delete</button>
           </div>
           <div class="adm-msg-item-body">${esc(m.content)}${m.attachment ? ` <a href="uploads/${esc(m.attachment)}" target="_blank">📎</a>` : ''}</div>
         </div>`).join('');
